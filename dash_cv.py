@@ -12,3 +12,5 @@ importar = st.button("Importar Dataframe")
 if importar:
     df_cl_ccc_resumido = pd.read_csv('df_cl_ccc_resumido.csv')
     st.dataframe(df_cl_ccc_resumido, hide_index=True)
+else:
+    st.write("Sem dados")
