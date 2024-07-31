@@ -1,10 +1,34 @@
 import streamlit as st
 import pandas as pd
+from utils import show_boxplot, show_barchart
 
 def continents_page():
-    st.title("Dashboard de Custo de Vida por Continente - CESAR School 24")
-    st.markdown("Dashboard com o custo de Vida de diversas cidades do mundo")
+    st.title("Continentes")
+    st.markdown("Análise de dados por continentes")
 
+    df = pd.read_csv('df_cl_ccc_resumido.csv')
+
+    continents = df['Continent'].unique()
+    tupla_continents = tuple(continents)
+
+    with st.container():
+        col1, col2 = st.columns(2)
+
+        with col1:
+            option_1 = st.selectbox(
+            "Selecione um continente",
+            tupla_continents,
+            )
+        with col2:
+            option_2 = st.selectbox(
+            "Selecione um continente",
+            tuple(item for item in tupla_continents if item != option_1),
+            )
+
+    show_boxplot(option_1, option_2)
+    show_barchart(option_1, option_2)
+
+    '''
     importar = st.button("Importar Dataframe")
 
     if importar:
@@ -12,3 +36,5 @@ def continents_page():
         st.dataframe(df_cl_ccc_resumido, hide_index=True)
     else:
         st.write("Sem dados")
+    '''
+    
