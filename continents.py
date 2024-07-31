@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from utils import show_boxplot, show_barchart
+from utils_continents import show_boxplot, show_barchart
 
 def continents_page():
     st.title("Continentes")
