@@ -1,11 +1,9 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 
-def show_boxplot(continent_1, continent_2):
+def show_boxplot(continent_1, continent_2, showAll):
     df = pd.read_csv('df_cl_ccc_resumido.csv')
-
     df_filtered = df[df['Continent'].isin([continent_1, continent_2])]
     
     # Criando o box plot com plotly.graph_objects
@@ -22,8 +20,8 @@ def show_boxplot(continent_1, continent_2):
 
     for category, custom_name in category_names.items():
         fig.add_trace(go.Box(
-                y=df_filtered[category],
-                x=df_filtered['Continent'],
+                y=df[category] if showAll else df_filtered[category],
+                x=df['Continent'] if showAll else df_filtered['Continent'],
                 #boxpoints=False, # no data points
                 name=custom_name
             ))
@@ -31,6 +29,7 @@ def show_boxplot(continent_1, continent_2):
     # Configurando o layout do gráfico
     fig.update_layout(
         title="Custos de Vida por Continente",
+        height=600,
         title_font=dict(size=20),  # Tamanho do título
         xaxis=dict(
             title="Continente",
@@ -47,7 +46,7 @@ def show_boxplot(continent_1, continent_2):
         legend=dict(
             #title="Categorias",
             x=0,  # Posição da legenda no eixo x
-            y= -0.5,  # Posição da legenda no eixo y
+            y= -0.3,  # Posição da legenda no eixo y
             bgcolor="Lavender",  # Cor de fundo da legenda
             bordercolor="Black",  # Cor da borda da legenda
             borderwidth=1,  # Largura da borda da legenda
@@ -64,12 +63,11 @@ def show_boxplot(continent_1, continent_2):
         st.plotly_chart(fig)
 
 
-def show_barchart(continent_1, continent_2):
+def show_barchart(continent_1, continent_2, showAll):
     # Criando o box plot com plotly.graph_objects
     fig = go.Figure()
 
     df = pd.read_csv('df_cl_ccc_resumido.csv')
-
     df_filtered = df[df['Continent'].isin([continent_1, continent_2])]
 
     categorias = ['Salario_Medio', 'CV1_1', 'CV1_2', 'CV2_1', 'CV2_2']
@@ -84,14 +82,15 @@ def show_barchart(continent_1, continent_2):
 
     for category, custom_name in category_names.items():
         fig.add_trace(go.Bar(
-                y=df_filtered[category],
-                x=df_filtered['Continent'],
+                y=df[category] if showAll else df_filtered[category],
+                x=df['Continent'] if showAll else df_filtered['Continent'],
                 name=custom_name
             ))
 
     # Configurando o layout do gráfico
     fig.update_layout(
         title="Salário x Custo de Vida",
+        height=600,
         title_font=dict(size=20),
         xaxis=dict(
             title="Continente",
@@ -105,9 +104,8 @@ def show_barchart(continent_1, continent_2):
         ),
         barmode='group',
         legend=dict(
-            title="Variáveis",
             x=0,  # Posição da legenda no eixo x fora do gráfico
-            y=-1.8,  # Posição da legenda no eixo y no topo
+            y=-0.8,  # Posição da legenda no eixo y no topo
             traceorder='normal',
             bgcolor="White",  # Cor de fundo da legenda
             bordercolor="Black",  # Cor da borda da legenda

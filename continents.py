@@ -25,8 +25,10 @@ def continents_page():
             tuple(item for item in tupla_continents if item != option_1),
             )
 
-    show_boxplot(option_1, option_2)
-    show_barchart(option_1, option_2)
+        all = st.checkbox("Mostrar todos")
+
+        show_boxplot(option_1, option_2, all)
+        show_barchart(option_1, option_2, all)
 
     '''
     importar = st.button("Importar Dataframe")
