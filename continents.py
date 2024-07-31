@@ -17,7 +17,7 @@ def continents_page():
         with col1:
             option_1 = st.selectbox(
             "Selecione um continente",
-            tupla_continents,
+            tuple(tupla_continents),
             )
         with col2:
             option_2 = st.selectbox(
@@ -29,14 +29,4 @@ def continents_page():
 
         show_boxplot(option_1, option_2, all)
         show_barchart(option_1, option_2, all)
-
-    '''
-    importar = st.button("Importar Dataframe")
-
-    if importar:
-        df_cl_ccc_resumido = pd.read_csv('df_cl_ccc_resumido.csv')
-        st.dataframe(df_cl_ccc_resumido, hide_index=True)
-    else:
-        st.write("Sem dados")
-    '''
     
