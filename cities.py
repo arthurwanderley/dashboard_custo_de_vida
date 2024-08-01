@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 from utils import show_image
-from utils_cities import show_city_barchar
+from utils_cities import show_city_barchar_high_cost
+from utils_cities import show_city_barchar_low_cost
 
 def cities_page():
     st.title("Cidades")
@@ -41,4 +42,5 @@ def cities_page():
             tuple(cities_list),
             )
 
-        show_city_barchar(option_3, option_2)
+        show_city_barchar_high_cost(option_3, option_2)
+        show_city_barchar_low_cost(option_3, option_2)
