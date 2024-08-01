@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
 from utils_continents import show_boxplot, show_barchart
+from utils import show_image
 
 def continents_page():
     st.title("Continentes")
     st.markdown("Análise de dados por continentes")
 
+    show_image('assets/world-map.png')
+    
     df = pd.read_csv('df_cl_ccc_resumido.csv')
 
     continents = df['Continent'].unique()
