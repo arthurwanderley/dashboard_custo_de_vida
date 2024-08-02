@@ -24,7 +24,7 @@ def show_mapbox(city_selected):
     fig.update_layout(
         mapbox_style="white-bg",
         mapbox_center={"lat": selected_coordinates[0], "lon": selected_coordinates[1]},
-        mapbox_zoom=7,  # Ajuste o nível de zoom conforme necessário
+        mapbox_zoom=7,
         mapbox_layers=[
             {
                 "below": 'traces',

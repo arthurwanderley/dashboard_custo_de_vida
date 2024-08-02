@@ -38,8 +38,6 @@ def cities_page():
             tuple(cities_list),
             )
 
-        print(option_3)
-        
         show_mapbox(option_3)
         show_city_barchar_high_cost(option_3, option_2)
         show_city_barchar_low_cost(option_3, option_2)
