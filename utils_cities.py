@@ -76,7 +76,7 @@ def show_city_barchar_low_cost(city, country):
     valor_minimo = selected_country_df['CV2_2'].min()
     valor_maximo = selected_country_df['CV2_2'].max()
     valor_minimo_df = selected_country_df[df['CV2_2'] == valor_minimo]
-    valor_maximo_df = selected_country_df[df['CV1_2'] == valor_maximo]
+    valor_maximo_df = selected_country_df[df['CV2_2'] == valor_maximo]
    
     df_filtered_by_city = df[df['city'] == city]
 
