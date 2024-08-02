@@ -1,14 +1,10 @@
 import streamlit as st
 import pandas as pd
-from utils import show_image
-from utils_cities import show_city_barchar_high_cost
-from utils_cities import show_city_barchar_low_cost
+from utils_cities import show_city_barchar_high_cost,show_city_barchar_low_cost, show_mapbox
 
 def cities_page():
     st.title("Cidades")
     st.markdown("Análise de dados por cidades")
-    
-    show_image('assets/city.jpg', backgroundColor='#5982b7')
 
     df = pd.read_csv('df_cl_ccc_resumido.csv')
 
@@ -42,5 +38,8 @@ def cities_page():
             tuple(cities_list),
             )
 
+        print(option_3)
+        
+        show_mapbox(option_3)
         show_city_barchar_high_cost(option_3, option_2)
         show_city_barchar_low_cost(option_3, option_2)

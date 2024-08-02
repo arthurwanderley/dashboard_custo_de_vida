@@ -1,6 +1,44 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from utils import get_city_coordenates
+
+def show_mapbox(city_selected):
+    coordenates = get_city_coordenates()
+    df = pd.DataFrame(coordenates.items(), columns=['city', 'coordinates'])
+    df[['lat', 'lon']] = pd.DataFrame(df['coordinates'].tolist(), index=df.index)
+    df = df.drop(columns=['coordinates'])
+    
+    # Obter coordenadas da cidade selecionada
+    selected_coordinates = df[df['city'] == city_selected][['lat', 'lon']].values[0]
+    
+    fig = px.scatter_mapbox(
+        df,
+        lat="lat",
+        lon="lon",
+        hover_name="city",
+        color_discrete_sequence=["fuchsia"], zoom=3,
+        height=280
+    )
+
+    fig.update_layout(
+        mapbox_style="white-bg",
+        mapbox_center={"lat": selected_coordinates[0], "lon": selected_coordinates[1]},
+        mapbox_zoom=7,  # Ajuste o nível de zoom conforme necessário
+        mapbox_layers=[
+            {
+                "below": 'traces',
+                "sourcetype": "raster",
+                "source": [
+                    "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
+                ]
+            }
+        ])
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    
+    with st.container():
+        st.plotly_chart(fig)
+
 
 def show_city_barchar_high_cost(city, country):
     df = pd.read_csv('df_cl_ccc_resumido.csv')
