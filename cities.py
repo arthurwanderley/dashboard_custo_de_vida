@@ -39,5 +39,6 @@ def cities_page():
             )
 
         show_mapbox(option_3)
-        show_city_barchar_high_cost(option_3, option_2)
-        show_city_barchar_low_cost(option_3, option_2)
+        show_lower_higher_cities_costs = st.toggle("Mostrar cidades com menor e maior custo", value=True)
+        show_city_barchar_high_cost(option_3, option_2, show_lower_higher_cities_costs)
+        show_city_barchar_low_cost(option_3, option_2, show_lower_higher_cities_costs)
