@@ -1,22 +1,52 @@
 import streamlit as st
 import base64
 
-def show_image(img_path, backgroundColor='#f2f2f2'):
+def show_image(img_path, backgroundColor='#f2f2f2', width=500):
     st.markdown(f"""
         <div style='display: flex; justify-content: center; background-color: {backgroundColor};
         margin-bottom: 30px;'>
-            {_img_to_html(img_path)}
+            {_img_to_html(img_path, width)}
         </div>""",
         unsafe_allow_html=True
     )
+
+
+def map_display(selected_continent_1, selected_continent_2, show_all=False):
+    if show_all:
+        with st.container():
+            show_image('assets/world-map.png', width=800)
+    else:
+        with st.container():
+            col1, col2 = st.columns(2)
+            with col1:
+                _get_continente_image(selected_continent_1)  
+            with col2:
+                _get_continente_image(selected_continent_2) 
+
+
+def _get_continente_image(continent):
+    if continent == 'Africa':
+        show_image('assets/africa.jpg')
+    elif continent == 'Asia':
+        show_image('assets/asia.jpg')
+    elif continent == 'Americas':
+         show_image('assets/americas.jpg')
+    elif continent == 'Europe':
+         show_image('assets/europe.jpg')
+    else:
+        show_image('assets/oceania.jpg')
+
 
 def _img_to_bytes(img_path):
     img_bytes = open(img_path, "rb").read()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
-def _img_to_html(img_path):
-    img_html = f"<img src='data:image/png; base64,{_img_to_bytes(img_path)}'; width=600; height=300; class=img-fluid;>"
+def _img_to_html(img_path, width=500):
+    img_html = f"""<img src='data:image/png;base64,{_img_to_bytes(img_path)}';
+                width='{width}';
+                height=380;
+                class=img-fluid;>"""
     return img_html
 
 

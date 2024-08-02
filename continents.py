@@ -1,12 +1,11 @@
 import streamlit as st
 import pandas as pd
 from utils_continents import show_boxplot, show_barchart
-from utils import show_image
+from utils import map_display
 
 def continents_page():
     st.title("Continentes")
     st.markdown("Análise de dados por continentes")
-    show_image('assets/world-map.png')
     
     df = pd.read_csv('df_cl_ccc_resumido.csv')
     continents = df['Continent'].unique()
@@ -26,8 +25,9 @@ def continents_page():
             tuple(item for item in tupla_continents if item != option_1),
             )
 
-        all = st.checkbox("Mostrar todos")
+        show_all = st.checkbox("Mostrar todos")
 
-        show_boxplot(option_1, option_2, all)
-        show_barchart(option_1, option_2, all)
+        map_display(option_1, option_2, show_all)
+        show_boxplot(option_1, option_2, show_all)
+        show_barchart(option_1, option_2, show_all)
     
