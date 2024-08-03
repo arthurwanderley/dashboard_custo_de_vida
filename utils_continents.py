@@ -9,7 +9,6 @@ def show_boxplot(continent_1, continent_2, showAll):
     # Criando o box plot com plotly.graph_objects
     fig = go.Figure()
 
-    categorias = ['CV1_1', 'CV1_2', 'CV2_1', 'CV2_2']
     # Dicionário de mapeamento de nomes de categorias
     category_names = {
         'CV1_1': 'CV Moradia no Centro da Cidade, utiliza\n transporte privado e gasta no final de semana',
@@ -70,7 +69,6 @@ def show_barchart(continent_1, continent_2, showAll):
     df = pd.read_csv('df_cl_ccc_resumido.csv')
     df_filtered = df[df['Continent'].isin([continent_1, continent_2])]
 
-    categorias = ['Salario_Medio', 'CV1_1', 'CV1_2', 'CV2_1', 'CV2_2']
     # Dicionário de mapeamento de nomes de categorias
     category_names = {
         'Salario_Medio': 'Salário Médio',
