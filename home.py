@@ -26,7 +26,7 @@ def home_page():
             st.image(paris_img, caption='Paris, França')
             
         with col2:
-            st.image(tokyo_img, caption='Tokyi, Japão')
+            st.image(tokyo_img, caption='Tokyo, Japão')
 
         with col3:
             st.image(olinda_img, caption='Olinda, Brasil')
