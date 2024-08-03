@@ -1,5 +1,15 @@
 import streamlit as st
 import base64
+from PIL import Image
+
+def resize_image(image_path, height):
+    with Image.open(image_path) as img:
+        aspect_ratio = img.width / img.height
+        new_width = int(height * aspect_ratio)
+        resized_img = img.resize((new_width, height))
+        
+        return resized_img
+
 
 def show_image(img_path, backgroundColor='#f2f2f2', width=500):
     st.markdown(f"""
