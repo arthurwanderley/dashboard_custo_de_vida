@@ -7,12 +7,13 @@ def home_page():
 
     with st.container():
        st.markdown(f"""
-            <p> Analise as diferenças de valores em se morar no centro, fora
-                do centro, utilizando<br> transporte público ou privado e muito mais.
+            <p> Analise as diferenças de valores em se morar no centro, fora do centro,<br> 
+                utilizando transporte público ou privado e muito mais. <br>
+                Moeda referencial: <strong>Dólar Americano(US$)</strong>
             </p>""",
             unsafe_allow_html=True
         )
-
+    
     paris_img = resize_image('assets/paris.jpg', 260)
     tokyo_img = resize_image('assets/tokyo.jpg', 260)
     olinda_img = resize_image('assets/olinda.jpg', 260)

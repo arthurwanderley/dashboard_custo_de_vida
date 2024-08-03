@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from utils_continents import show_boxplot, show_barchart
+from utils_continents import show_boxplot, show_barchart, show_scatterplot
 from utils import map_display
 
 def continents_page():
@@ -30,4 +30,10 @@ def continents_page():
         map_display(option_1, option_2, show_all)
         show_boxplot(option_1, option_2, show_all)
         show_barchart(option_1, option_2, show_all)
-    
+        
+        col3, col4 = st.columns(2)
+        
+        with col3:
+            show_scatterplot(option_1, option_2, show_all=show_all, lowest_cost=True)
+        with col4:
+            show_scatterplot(option_1, option_2, show_all=show_all)

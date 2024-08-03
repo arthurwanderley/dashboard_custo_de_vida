@@ -118,4 +118,92 @@ def show_barchart(continent_1, continent_2, showAll):
 
     with st.container():
         st.plotly_chart(fig)
+
+
+def show_scatterplot(continent_1, continent_2, show_all=False, lowest_cost=False):
+    df = pd.read_csv('df_cl_ccc_resumido.csv')
+
+    if show_all:
+        df_with_filters = df
+    else:
+        df_with_filters = df[df['Continent'].isin([continent_1, continent_2])]
+    
+  
+    # Definindo símbolos e cores para cada variável
+    symbols = ['circle']
+    
+    column_name = 'CV2_2' if lowest_cost else 'CV1_1'
+    columns = [column_name]
+
+    # Criando uma paleta de cores para os continentes
+    continent_colors = {
+        'Asia': 'purple',
+        'Africa': 'green',
+        'Europe': 'blue',
+        'Americas': 'red',
+        'Oceania': 'gray'
+    }
+
+
+    # Criando o scatter plot com plotly.graph_objects
+    fig = go.Figure()
+
+    for i, column in enumerate(columns):
+        for continent, color in continent_colors.items():
+            # Filtrando os dados para o continente atual
+            filtered_df = df_with_filters[df_with_filters['Continent'] == continent]
+
+            hover_text = df_with_filters['city'] + ', ' + df_with_filters['country']
+
+            fig.add_trace(go.Scatter(
+                x=filtered_df[column],
+                y=filtered_df['Salario_Medio'],
+                mode='markers',
+                marker=dict(
+                    size=6.5,
+                    symbol=symbols[i],  # Define o símbolo dos marcadores
+                    color=color  # Define a cor baseada no continente
+                ),
+                text=hover_text,  # Texto a ser exibido no hover
+                name=f'{continent}',
+                hoverinfo='text'  # Define que o hovertext será exibido
+            ))
+
+
+
+    # Configurando o layout do gráfico
+    fig.update_layout(
+        title= "Salário Médio x Residir no fora do centro e usa Transporte público"
+            if lowest_cost
+            else "Salário Médio x Residir no centro e usa Transporte privado",
+        xaxis=dict(
+            title="Custo de Vida",
+            title_font=dict(size=16),  # Tamanho do título do eixo x
+            tickfont=dict(size=14)  # Tamanho dos rótulos do eixo x
+        ),
+        yaxis=dict(
+            title="Salário Médio",
+            title_font=dict(size=16),  # Tamanho do título do eixo y
+            tickfont=dict(size=14)  # Tamanho dos rótulos do eixo y
+        ),
+        legend=dict(
+            x=0,  # Posição da legenda no eixo x fora do gráfico
+            y=-0.7,  # Posição da legenda no eixo y no topo
+            traceorder='normal',
+            bgcolor="White",  # Cor de fundo da legenda
+            bordercolor="Black",  # Cor da borda da legenda
+            borderwidth=1,  # Largura da borda da legenda
+            font=dict(
+                family="Arial",
+                size=12,
+                color="black"
+            )
+        ),
+        margin=dict(r=50),
+        width=1200,  # Largura do gráfico
+        height=550  # Altura do gráfico
+    )
+
+    with st.container():
+        st.plotly_chart(fig)
     
