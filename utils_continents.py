@@ -152,7 +152,7 @@ def show_scatterplot(continent_1, continent_2, show_all=False, lowest_cost=False
             # Filtrando os dados para o continente atual
             filtered_df = df_with_filters[df_with_filters['Continent'] == continent]
 
-            hover_text = df_with_filters['city'] + ', ' + df_with_filters['country']
+            hover_text = filtered_df['city'] + ', ' + filtered_df['country']
 
             fig.add_trace(go.Scatter(
                 x=filtered_df[column],
