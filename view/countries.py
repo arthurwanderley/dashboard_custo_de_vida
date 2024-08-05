@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from utils_countries import show_grafico1
+from utils.utils_countries import show_grafico1
 
 def countries_page():
     st.title("Países")

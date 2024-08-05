@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import resize_image
+from utils.utils import resize_image
 
 def home_page():
     st.title("Dash World Cost")

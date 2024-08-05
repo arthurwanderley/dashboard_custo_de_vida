@@ -1,8 +1,8 @@
 import streamlit as st
-from home import home_page
-from continents import continents_page
-from countries import countries_page
-from cities import cities_page
+from view.home import home_page
+from view.continents import continents_page
+from view.countries import countries_page
+from view.cities import cities_page
 
 st.set_page_config(
     layout="wide",

@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from utils import get_city_coordenates
+from utils.utils import get_city_coordenates
 
 def show_mapbox(city_selected):
     coordenates = get_city_coordenates()

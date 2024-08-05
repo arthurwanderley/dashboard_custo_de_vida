@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-from utils_continents import show_boxplot, show_barchart, show_scatterplot, mapa_country, graph_continent
-from utils import map_display
+from utils.utils_continents import show_boxplot, show_barchart, show_scatterplot, mapa_country, graph_continent
+from utils.utils import map_display
 
 def continents_page():
     st.title("Continentes")

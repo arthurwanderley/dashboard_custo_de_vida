@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-from utils_cities import show_city_barchar_high_cost,show_city_barchar_low_cost, show_mapbox
-from utils import show_country_flag
+from utils.utils_cities import show_city_barchar_high_cost,show_city_barchar_low_cost, show_mapbox
+from utils.utils import show_country_flag
 
 def cities_page():
     st.title("Cidades")
