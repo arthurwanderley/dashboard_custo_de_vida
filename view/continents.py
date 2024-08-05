@@ -20,6 +20,7 @@ def continents_page():
             option_1 = st.selectbox(
             "Selecione um continente",
             tuple(tupla_continents),
+          
             )
         with col2:
             option_2 = st.selectbox(
@@ -40,9 +41,8 @@ def continents_page():
         with col4:
             show_scatterplot(option_1, option_2, show_all=show_all)
 
-        col1_1, col1_2 = st.columns([3, 1])
         #Filtros
-        with col1_1:
+        with st.container():
             column_names_cv = {
                 'CV1_1': 'Mora no Centro da Cidade, utiliza transporte privado',
                 'CV1_2': 'Mora no Centro da Cidade, utiliza transporte público',
@@ -60,12 +60,11 @@ def continents_page():
             selected_column_key_cv = [key for key, value in column_names_cv.items() if value == selected_column_cv][0]
        
         ##Filtro Continente
-        with col1_2:
-            option_continent = st.selectbox(
-                "Selecione o Continente",
-                df_resumido['Continent'].unique(),
-                index=0)
-            df_resumido_filtrado = df_resumido[(df_resumido['Continent'] == option_continent)].dropna(subset=['CV1_1', 'CV1_2', 'CV2_1', 'CV2_2'])
+        if show_all:
+            df_resumido_filtrado = df_resumido.dropna(subset=['CV1_1', 'CV1_2', 'CV2_1', 'CV2_2'])
+        else:
+            df_resumido_filtrado = df_resumido[(df_resumido['Continent'] == option_1) | 
+                (df_resumido['Continent'] == option_2)].dropna(subset=['CV1_1', 'CV1_2', 'CV2_1', 'CV2_2'])
 
         ##Mapa
         col2_1, col2_2 = st.columns(2)

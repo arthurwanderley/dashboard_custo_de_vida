@@ -209,11 +209,15 @@ def mapa_country(selected_column_key_cv, df_cl_ccc_resumido_filtrado):
     # Calcular o centro do mapa
     center_lat = (df_cl_ccc_resumido_filtrado['Latitude'].min() + df_cl_ccc_resumido_filtrado['Latitude'].max()) / 2
     center_lon = (df_cl_ccc_resumido_filtrado['Longitude'].min() + df_cl_ccc_resumido_filtrado['Longitude'].max()) / 2
+
+    df_cl_ccc_resumido_filtrado['Color'] = _get_continent_color(df_cl_ccc_resumido_filtrado['Continent'])
+
     fig = px.scatter_mapbox(
         df_cl_ccc_resumido_filtrado,
         lat="Latitude",
         lon="Longitude",
         hover_name="City",
+        color="Continent",
         size= selected_column_key_cv if selected_column_key_cv in df_cl_ccc_resumido_filtrado.columns else None,  # Usar a coluna 'valor' se ela existir
         height=500,
     )
@@ -221,7 +225,8 @@ def mapa_country(selected_column_key_cv, df_cl_ccc_resumido_filtrado):
     fig.update_layout(
         mapbox_style="open-street-map",
         mapbox_center={"lat": center_lat, "lon": center_lon},
-        mapbox_zoom=4  # Ajuste o zoom inicial conforme necessário
+        mapbox_zoom=4,
+        showlegend=False  # Ajuste o zoom inicial conforme necessário
     )
 
     # Ajustar o zoom do mapa para se ajustar aos pontos plotados
@@ -233,6 +238,17 @@ def mapa_country(selected_column_key_cv, df_cl_ccc_resumido_filtrado):
         st.plotly_chart(fig)
 
 
+def _get_continent_color(continent):
+    continent_colors = {
+        "Asia": "purple",
+        "Africa": "green",
+        "Europe": "blue",
+        "Americas": "red",
+        "Oceania": "gray"
+    }
+    return continent.map(continent_colors)
+    
+    
 def plot_scatter_continent(selected_column_cv, df_cl_ccc_resumido_filtrado, nome_ficticio):
     # Criando o box plot com plotly.graph_objects
     fig = go.Figure()
