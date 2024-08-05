@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import base64
 from PIL import Image
 
@@ -33,6 +34,23 @@ def map_display(selected_continent_1, selected_continent_2, show_all=False):
             with col2:
                 _get_continente_image(selected_continent_2) 
 
+
+def show_country_flag(country_name):
+    flags_df = pd.read_csv('df_country_flags.csv')
+    country = flags_df[flags_df['Country'] == country_name]
+
+    if not country.empty:
+        image_url = country['ImageURL'].iloc[0]
+        
+        # Verificar se o valor não é NaN e se é uma string válida
+        if pd.notna(image_url) and isinstance(image_url, str):
+            st.image(image_url, width=100)
+        else:
+            st.write("Imagem não disponível para este país.")
+    else:
+        st.write(f"Bandeira {country_name} não encontrada.")
+    
+    
 
 def _get_continente_image(continent):
     if continent == 'Africa':

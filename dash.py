@@ -6,7 +6,6 @@ from cities import cities_page
 from teste_arthur import main_teste_arthur
 
 st.set_page_config(
-    page_title='PAGE_TITLE',
     layout="wide",
     initial_sidebar_state="expanded",
 )
