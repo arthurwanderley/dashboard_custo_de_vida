@@ -185,7 +185,7 @@ def show_scatterplot(continent_1, continent_2, show_all=False, lowest_cost=False
         ),
         legend=dict(
             x=0,  # Posição da legenda no eixo x fora do gráfico
-            y=-0.7,  # Posição da legenda no eixo y no topo
+            y= -0.6 if show_all else -0.35,  # Posição da legenda no eixo y no topo
             traceorder='normal',
             bgcolor="White",  # Cor de fundo da legenda
             bordercolor="Black",  # Cor da borda da legenda
@@ -215,7 +215,7 @@ def mapa_country(selected_column_key_cv, df_cl_ccc_resumido_filtrado):
         lon="Longitude",
         hover_name="City",
         size= selected_column_key_cv if selected_column_key_cv in df_cl_ccc_resumido_filtrado.columns else None,  # Usar a coluna 'valor' se ela existir
-        height=500
+        height=500,
     )
 
     fig.update_layout(

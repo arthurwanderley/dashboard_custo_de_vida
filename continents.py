@@ -68,7 +68,7 @@ def continents_page():
             df_resumido_filtrado = df_resumido[(df_resumido['Continent'] == option_continent)].dropna(subset=['CV1_1', 'CV1_2', 'CV2_1', 'CV2_2'])
 
         ##Mapa
-        col2_1, col2_2 = st.columns([3, 2])
+        col2_1, col2_2 = st.columns(2)
 
         with col2_1:
             mapa_country(selected_column_key_cv, df_resumido_filtrado)
