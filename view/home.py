@@ -10,6 +10,12 @@ def home_page():
             <p> Analise as diferenças de valores em se morar no centro, fora do centro,<br> 
                 utilizando transporte público ou privado e muito mais. <br>
                 Moeda referencial: <strong>Dólar Americano(US$)</strong>
+                <br><br>
+                Grupo:<br> 
+                <strong>André Leão (afbsl@cesar.school.com)</strong><br>
+                <strong>Arthur Wanderley (awfs@cesar.school.com)</strong><br>
+                <strong>Manuela Carvalho (mlbc@cesar.school.com)</strong><br>
+                <strong>Thiago Wanderley (twa@cesar.school.com)</strong>    
             </p>""",
             unsafe_allow_html=True
         )
